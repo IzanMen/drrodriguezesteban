@@ -1,0 +1,6 @@
+---
+import { readSnapshot } from '../lib/snapshot';
+
+const html = await readSnapshot('index.html');
+---
+<Fragment set:html={html} />

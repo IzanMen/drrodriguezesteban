@@ -1,0 +1,27 @@
+---
+import { readSnapshot } from '../../lib/snapshot';
+
+export function getStaticPaths() {
+  const routes = [
+    'aviso-legal',
+    'contacto',
+    'cookies',
+    'coolpeel-laser-madrid',
+    'hifu-facial-madrid',
+    'laser-co2-regenerativo-madrid',
+    'monalisa-touch-madrid',
+    'por-que-elegirnos',
+    'privacidad',
+    'rellenos-naturales-acido-hialuronico-madrid',
+    'sobre-nosotros',
+    'testimonios',
+    'tratamientos-faciales',
+  ] as const;
+
+  return routes.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props;
+const html = await readSnapshot(`${slug}/index.html`);
+---
+<Fragment set:html={html} />
